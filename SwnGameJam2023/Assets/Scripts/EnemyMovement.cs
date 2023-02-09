@@ -14,23 +14,27 @@ public class DefaltEnemyMovement : MonoBehaviour
     {
         targetTransform = GameObject.FindGameObjectsWithTag("Player")[0].transform;
     }
-    // Triggers every frame
-    void Update()
-    {
+
+    Quaternion calculateRotationToPlayer(Transform targetTransform){
         // Calculates the Vector 2 distance between the target and player
         Vector3 dir = (targetTransform.position) - (transform.position);
         // Turns this Vector 2 into an angle
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90;
         // Turns this angle into a rotation value
-        Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        // Rotates the enemy to that rotation 
+        return Quaternion.AngleAxis(angle, Vector3.forward);
+    }
+    
+    void Update()
+    {
+        Quaternion rotation = calculateRotationToPlayer(targetTransform);
+        // Rotates the enemy to the target rotation 
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, turnSpeed * Time.deltaTime);
-        // Moves the enemy forwards
+        // Moves the enemy at a constant speed
         transform.Translate(transform.up * speed * Time.deltaTime, Space.World);
     }
     public void recoil(float recoil)
     {
-        this.GetComponent<Rigidbody2D>().AddForce((targetTransform.position - transform.GetChild(0).transform.GetChild(0).position) * recoil * -Time.deltaTime);
+       this.GetComponent<Rigidbody2D>().AddForce((targetTransform.position - transform.GetChild(0).transform.GetChild(0).position) * recoil * -Time.deltaTime);
     }
     public void takeDamage(float damage)
     {
