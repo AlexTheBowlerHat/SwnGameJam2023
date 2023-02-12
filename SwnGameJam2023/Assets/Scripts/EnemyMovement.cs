@@ -32,10 +32,12 @@ public class DefaltEnemyMovement : MonoBehaviour
         // Moves the enemy at a constant speed
         transform.Translate(transform.up * speed * Time.deltaTime, Space.World);
     }
+    /*
     public void recoil(float recoil)
     {
        this.GetComponent<Rigidbody2D>().AddForce((targetTransform.position - transform.GetChild(0).transform.GetChild(0).position) * recoil * -Time.deltaTime);
     }
+    */
     public void takeDamage(float damage)
     {
         // Subtracts damage from health

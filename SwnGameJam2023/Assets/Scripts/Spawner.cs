@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+
     public float spawnInterval;
     public float distanceFromSpawner;
     public GameObject enemyPrefab;
@@ -28,6 +29,7 @@ public class Spawner : MonoBehaviour
         //Set enemy rotation
         Quaternion rotation = calculateRotationToPlayer(transform);
         GameObject NewEnemy = Instantiate(enemy, position, rotation, transform);
+        
     }
     // Update is called once per frame
     void Update()

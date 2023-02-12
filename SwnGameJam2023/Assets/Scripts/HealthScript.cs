@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 //Derived from Alan Thorn's Health Script
 public class HealthScript : MonoBehaviour
 {
-    public string parentedTag;
+    string parentedTag;
     [SerializeField]
     private float startingHealth; 
     private float maxHealth;
@@ -22,7 +22,7 @@ public class HealthScript : MonoBehaviour
         healthPoints = Mathf.Clamp(healthPoints, 0f, maxHealth); //Makes sure health is in the correct range
 
         //Debug.Log("got here updating health");
-        if (animateScript == null) return;
+        //if (animateScript == null) return;
         //Debug.Log("made it past null check");
 
         //Animations
@@ -32,11 +32,12 @@ public class HealthScript : MonoBehaviour
             animateScript.DamageAnimation("playerBlink");
             //healthUI.UpdateHearts(healthPoints);
         }
+        /*
         else if (objectTagToString == "Enemy")
         {
             animateScript.DamageAnimation("EnemyBlink");
         }
-
+        */
         //Death check
         if (healthPoints <= 0f)
         {
