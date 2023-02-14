@@ -8,6 +8,7 @@ public class DefaltEnemyMovement : MonoBehaviour
     public float health;
     public float turnSpeed;
     public Transform targetTransform;
+    private Vector3 targetDirection;
 
     // Sets the target of the enemy
     void Start()
@@ -28,9 +29,11 @@ public class DefaltEnemyMovement : MonoBehaviour
     {
         Quaternion rotation = calculateRotationToPlayer(targetTransform);
         // Rotates the enemy to the target rotation 
-        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, turnSpeed * Time.deltaTime);
+        // transform.rotation = Quaternion.Lerp(transform.rotation, rotation, turnSpeed * Time.deltaTime);
+        Vector3 currentPos = transform.position;
+        targetDirection = (targetTransform.position - currentPos).normalized;
         // Moves the enemy at a constant speed
-        transform.Translate(transform.up * speed * Time.deltaTime, Space.World);
+        transform.Translate(targetDirection * speed * Time.deltaTime, Space.World);
     }
     /*
     public void recoil(float recoil)
