@@ -41,14 +41,4 @@ public class DefaltEnemyMovement : MonoBehaviour
        this.GetComponent<Rigidbody2D>().AddForce((targetTransform.position - transform.GetChild(0).transform.GetChild(0).position) * recoil * -Time.deltaTime);
     }
     */
-    public void takeDamage(float damage)
-    {
-        // Subtracts damage from health
-        health -= damage;
-        // If the player is dead, kill it
-         if (health <= 0)
-         {
-            Destroy(this.gameObject, 0.0f);
-         }
-    }
 }

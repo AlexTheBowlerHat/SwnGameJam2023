@@ -22,7 +22,6 @@ public class Spawner : MonoBehaviour
     public void spawnEnemy(GameObject enemy){
         //Set enemy position
         Vector3 dir = new Vector3(Random.value - 0.5f, Random.value - 0.5f, 0);
-        Debug.Log(dir);
         Vector3 posititonOffset = Vector3.Normalize(dir) * distanceFromSpawner;
         Vector3 position = transform.position + posititonOffset;
 
