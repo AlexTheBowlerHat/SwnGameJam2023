@@ -9,7 +9,7 @@ public class ProjectileBehavior : MonoBehaviour
 
     private void Start()
     {
-        Destroy(gameObject, 10f);
+        Destroy(gameObject, 5f);
     }
     //Sets tag to stop projectile hitting itself
     public void SetFired(string passedTag, float passedDamage)
