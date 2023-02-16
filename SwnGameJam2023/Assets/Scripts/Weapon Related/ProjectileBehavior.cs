@@ -6,10 +6,14 @@ public class ProjectileBehavior : MonoBehaviour
 {
     string tagThatFired;
     float projectileDamage;
+    public AudioSource audioSrc;
+    public AudioClip sfx1, sfx2;
 
     private void Start()
     {
-        Destroy(gameObject, 5f);
+        audioSrc = GameObject.FindGameObjectsWithTag("Sound")[0].GetComponent<AudioSource>();
+        Destroy(gameObject, 4f);
+        audioSrc.clip = sfx1;
     }
     //Sets tag to stop projectile hitting itself
     public void SetFired(string passedTag, float passedDamage)
@@ -26,6 +30,15 @@ public class ProjectileBehavior : MonoBehaviour
             if (collidedHealthClass == null) return;
             if (!collidedHealthClass.invincible)
             {
+                if (Random.Range(0,1) == 0)
+                {
+                    audioSrc.clip = sfx1;
+                }
+                else
+                {
+                    audioSrc.clip = sfx2;
+                }
+                audioSrc.Play();
               collidedHealthClass.UpdateHealth(projectileDamage); 
             }
         }
