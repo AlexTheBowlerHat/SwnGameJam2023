@@ -5,15 +5,20 @@ using UnityEngine;
 public class DefaltEnemyMovement : MonoBehaviour
 {
     public float speed;
+    private float maxSpeed;
     public float health;
     public float turnSpeed;
     public Transform targetTransform;
     private Vector3 targetDirection;
+    public bool beingKnockBacked = false;
+    private Vector3 forceApplied;
+    private float timer;
 
     // Sets the target of the enemy
     void Start()
     {
         targetTransform = GameObject.FindGameObjectsWithTag("Player")[0].transform;
+        maxSpeed = speed;
     }
 
     Quaternion calculateRotationToPlayer(Transform targetTransform){
@@ -27,18 +32,27 @@ public class DefaltEnemyMovement : MonoBehaviour
     
     void Update()
     {
-        Quaternion rotation = calculateRotationToPlayer(targetTransform);
-        // Rotates the enemy to the target rotation 
         // transform.rotation = Quaternion.Lerp(transform.rotation, rotation, turnSpeed * Time.deltaTime);
         Vector3 currentPos = transform.position;
         targetDirection = (targetTransform.position - currentPos).normalized;
         // Moves the enemy at a constant speed
         transform.Translate(targetDirection * speed * Time.deltaTime, Space.World);
+        if (beingKnockBacked == true){
+            transform.GetComponent<Rigidbody2D>().AddForce(-forceApplied * Time.deltaTime / 0.5f);
+            timer += Time.deltaTime;
+            if (timer >= 0.5f){
+                beingKnockBacked = false;
+                transform.GetComponent<Rigidbody2D>().velocity = new Vector2(0,0);
+                speed = maxSpeed;
+            }
+        }
     }
-    /*
-    public void recoil(float recoil)
-    {
-       this.GetComponent<Rigidbody2D>().AddForce((targetTransform.position - transform.GetChild(0).transform.GetChild(0).position) * recoil * -Time.deltaTime);
+    public void ApplyKnockBack(float KBMultiplyer){
+        speed = 0;
+        timer = 0;
+        beingKnockBacked = true;
+        Vector3 KBforce = Vector3.Normalize(-(targetTransform.position - transform.position));
+        forceApplied = KBforce * KBMultiplyer;
+        transform.GetComponent<Rigidbody2D>().AddForce(forceApplied);
     }
-    */
 }

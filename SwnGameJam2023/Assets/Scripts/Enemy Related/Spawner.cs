@@ -26,7 +26,7 @@ public class Spawner : MonoBehaviour
         Vector3 position = transform.position + posititonOffset;
 
         //Set enemy rotation
-        Quaternion rotation = calculateRotationToPlayer(transform);
+        Quaternion rotation = transform.rotation;
         GameObject NewEnemy = Instantiate(enemy, position, rotation, transform);
         
     }
