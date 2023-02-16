@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class HealthScript : MonoBehaviour
 {
     string parentedTag;
+    public GameObject particals;
     [SerializeField]
     private float startingHealth; 
     private float maxHealth;
@@ -62,6 +63,7 @@ public class HealthScript : MonoBehaviour
         //Debug.Log("Bye: " + objectTagToString);
         if (objectTagToString == "Enemy")
         {
+            Instantiate(particals, transform.position, transform.rotation = Quaternion.Euler(0, 0, 0));
             Destroy(gameObject);
         }
         else if(objectTagToString == "Player")
