@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - NotToBeCollided
+  - Sound
   layers:
   - Default
   - TransparentFX
