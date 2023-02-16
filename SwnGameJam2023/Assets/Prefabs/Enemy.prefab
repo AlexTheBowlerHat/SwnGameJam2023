@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
+  maxSpeed: 0
   health: 10
   turnSpeed: 10
   targetTransform: {fileID: 0}
@@ -66,6 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0477471d40647084dac126a8974388ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  particals: {fileID: 1216130870985611052, guid: 32ae1e61ba4cd2048a4b53dadcfcad2f, type: 3}
   startingHealth: 3
   healthPoints: 3
   invincible: 0
