@@ -5,7 +5,7 @@ using UnityEngine;
 public class DefaltEnemyMovement : MonoBehaviour
 {
     public float speed;
-    private float maxSpeed;
+    public float maxSpeed;
     public float health;
     public float turnSpeed;
     public Transform targetTransform;

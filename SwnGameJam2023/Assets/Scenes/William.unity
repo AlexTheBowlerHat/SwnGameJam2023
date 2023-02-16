@@ -471,10 +471,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5104bbd5e696c34f92c660443a20282, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnInterval: 3
-  distanceFromSpawner: 5
+  spawnInterval: 1
+  distanceFromSpawner: 10
   enemyPrefab: {fileID: 2470468191512384719, guid: 3900f61fbe486e444b3fe0f47726068d, type: 3}
   timeSinceLastSpawn: 0
+  maxSize: 5
+  minScale: 0.3
+  minHealth: 1
+  minSpeed: 3
 --- !u!4 &1577653483
 Transform:
   m_ObjectHideFlags: 0

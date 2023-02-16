@@ -9,6 +9,10 @@ public class Spawner : MonoBehaviour
     public float distanceFromSpawner;
     public GameObject enemyPrefab;
     [SerializeField] float timeSinceLastSpawn = 0;
+    public float maxSize;
+    public float minScale;
+    public float minHealth;
+    public float minSpeed;
 
      Quaternion calculateRotationToPlayer(Transform targetTransform){
         // Calculates the Vector 2 distance between the target and player
@@ -28,7 +32,14 @@ public class Spawner : MonoBehaviour
         //Set enemy rotation
         Quaternion rotation = transform.rotation;
         GameObject NewEnemy = Instantiate(enemy, position, rotation, transform);
-        
+
+        //Set enemy size
+        float size = Random.Range(1, maxSize);
+        NewEnemy.transform.localScale = new Vector3(minScale * size, minScale * size, 1);
+        NewEnemy.GetComponent<HealthScript>().healthPoints = minHealth * size;
+        NewEnemy.GetComponent<DefaltEnemyMovement>().speed = minSpeed/size;
+        NewEnemy.GetComponent<DefaltEnemyMovement>().maxSpeed = minSpeed/size;
+
     }
     // Update is called once per frame
     void Update()
