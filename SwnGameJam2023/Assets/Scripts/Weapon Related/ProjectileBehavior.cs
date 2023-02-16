@@ -24,23 +24,22 @@ public class ProjectileBehavior : MonoBehaviour
     private void ProjectileCleanup(Collider2D collision)
     {
         Destroy(gameObject);
-        if (collision.tag == "Player"|| collision.tag == "Enemy")
+        if (collision.tag == "Player" || collision.tag == "Enemy")
         {
             HealthScript collidedHealthClass = collision.GetComponent<HealthScript>();
-            if (collidedHealthClass == null) return;
-            if (!collidedHealthClass.invincible)
+            if (collidedHealthClass == null || collidedHealthClass.invincible == true) return;
+
+            //Picks random sound on hit
+            if (Random.Range(0, 1) == 0)
             {
-                if (Random.Range(0,1) == 0)
-                {
-                    audioSrc.clip = sfx1;
-                }
-                else
-                {
-                    audioSrc.clip = sfx2;
-                }
-                audioSrc.Play();
-              collidedHealthClass.UpdateHealth(projectileDamage); 
+                audioSrc.clip = sfx1;
             }
+            else
+            {
+                audioSrc.clip = sfx2;
+            }
+            audioSrc.Play();
+            collidedHealthClass.UpdateHealth(projectileDamage);
         }
 
     }

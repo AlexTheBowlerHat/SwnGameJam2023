@@ -19,6 +19,7 @@ public class HealthScript : MonoBehaviour
     {
         //Changes health
         healthPoints -= change;
+        Debug.Log("Damage done to: " + gameObject.ToString());
         healthPoints = Mathf.Clamp(healthPoints, 0f, maxHealth); //Makes sure health is in the correct range
 
         //Debug.Log("got here updating health");

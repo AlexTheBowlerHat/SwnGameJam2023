@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-
+    public GameObject enemyHolder;
     public float spawnInterval;
     public float distanceFromSpawner;
     public GameObject enemyPrefab;
@@ -31,7 +31,7 @@ public class Spawner : MonoBehaviour
 
         //Set enemy rotation
         Quaternion rotation = transform.rotation;
-        GameObject NewEnemy = Instantiate(enemy, position, rotation, transform);
+        GameObject NewEnemy = Instantiate(enemy, position, rotation, enemyHolder.transform);
 
         //Set enemy size
         float size = Random.Range(1, maxSize);
