@@ -6,14 +6,12 @@ public class ProjectileBehavior : MonoBehaviour
 {
     string tagThatFired;
     float projectileDamage;
-    public AudioSource audioSrc;
-    public AudioClip sfx1, sfx2;
+    SFXControl audioReference;
 
     private void Start()
     {
-        audioSrc = GameObject.FindGameObjectsWithTag("Sound")[0].GetComponent<AudioSource>();
+        audioReference = GameObject.FindGameObjectsWithTag("Sound")[0].GetComponent<SFXControl>();
         Destroy(gameObject, 4f);
-        audioSrc.clip = sfx1;
     }
     //Sets tag to stop projectile hitting itself
     public void SetFired(string passedTag, float passedDamage)
@@ -21,36 +19,22 @@ public class ProjectileBehavior : MonoBehaviour
         tagThatFired = passedTag;
         projectileDamage = passedDamage;
     }
+    //Method for deleting and dealing damage
     private void ProjectileCleanup(Collider2D collision)
     {
         Destroy(gameObject);
-        if (collision.tag == "Player" || collision.tag == "Enemy")
-        {
-            HealthScript collidedHealthClass = collision.GetComponent<HealthScript>();
-            if (collidedHealthClass == null || collidedHealthClass.invincible == true) return;
-
-            //Picks random sound on hit
-            if (Random.Range(0, 1) == 0)
-            {
-                audioSrc.clip = sfx1;
-            }
-            else
-            {
-                audioSrc.clip = sfx2;
-            }
-            audioSrc.Play();
-            collidedHealthClass.UpdateHealth(projectileDamage);
-        }
-
+        if (collision.tag != "Player" && collision.tag != "Enemy") return;
+        HealthScript collidedHealthClass = collision.GetComponent<HealthScript>();
+        if (collidedHealthClass == null || collidedHealthClass.invincible == true) return;
+        audioReference.PlaySFX();
+        collidedHealthClass.UpdateHealth(projectileDamage);
     }
 
     //Cleans up projectile once it hits an object, checks it isn't hitting its owner
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Debug.Log(collision.tag);
-        if(collision.tag != tagThatFired && collision.tag != "NotToBeCollided") 
-        {
-            ProjectileCleanup(collision);
-        }
+        if(collision.tag == tagThatFired || collision.tag == "NotToBeCollided") return;
+        ProjectileCleanup(collision);
     }
 }

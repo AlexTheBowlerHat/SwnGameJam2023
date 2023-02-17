@@ -60,14 +60,8 @@ public class PlayerControl : MonoBehaviour
     //Variables for animation
     [Header ("==Animation Variables==")]
     Animate animateScript;
-    const string playerWalkDown =  "playerWalkDown";
-    const string playerWalkUp =  "playerWalkUp";
-    const string playerWalkLeft =  "playerWalkLeft";
-    const string playerWalkRight =  "playerWalkRight";
-    const string playerWalkUpLeft =  "playerWalkUpLeft";
-    const string playerWalkUpRight =  "playerWalkUpRight";
-    const string playerWalkDownLeft =  "playerWalkDownLeft";
-    const string playerWalkDownRight =  "playerWalkDownRight";
+    string[] animationStrings = {"playerWalkDown","playerWalkUp","playerWalkLeft","playerWalkRight",
+    "playerWalkUpLeft","playerWalkUpRight","playerWalkDownLeft", "playerWalkDownRight"};
     //Gets references
     void Start()
     {
@@ -104,10 +98,8 @@ public class PlayerControl : MonoBehaviour
     }
     public void MovePlayer()
     {
-        if (direction != Vector2.zero)
-        {
-            body.velocity = direction * walkSpeed * Time.fixedDeltaTime; //Velocity method
-        }
+        if (direction == Vector2.zero) return;
+        body.velocity = direction * walkSpeed * Time.fixedDeltaTime; //Velocity method
     }
 
     //Shooting Methods============================================================
@@ -158,14 +150,12 @@ public class PlayerControl : MonoBehaviour
     //Iterator for constantly firing projectiles on hold, stops when released
     IEnumerator HoldFire(bool stop)
     {
-        if(!stop)
-        {
+        if(stop)yield break;
+
         StartCoroutine(weapon.Shoot(RetreiveMouseInfo(), playerCooldown, playerFireForce, gameObject.tag, firePoint, holdAccessibility));
         yield return new WaitForSeconds(0.05f);
-        StartCoroutine(HoldFire(stopHoldFire));
-        }
-        else yield break;     
         stopHoldFire = false;
+        StartCoroutine(HoldFire(stopHoldFire));
     }
 
     //Flips weapon spot relevant to player depending on where mouse is aiming
@@ -232,56 +222,56 @@ public class PlayerControl : MonoBehaviour
             case float _ when 67.5f < threeSixtyLookAngle && threeSixtyLookAngle < 112.5f:
                 //Debug.Log("NORTH");
                 selectedSprites = northSprites;
-                animateScript.ChangeAnimationState(playerWalkUp);
+                animateScript.ChangeAnimationState(animationStrings[1]);
                 break;
 
             //SOUTH 
             case float _ when 292.5f > threeSixtyLookAngle && threeSixtyLookAngle > 247.5f:
                 //Debug.Log("SOUTH");
                 selectedSprites = southSprites;
-                animateScript.ChangeAnimationState(playerWalkDown);
+                animateScript.ChangeAnimationState(animationStrings[0]);
                 break;
 
             //WEST 
             case float _ when 157.5f < threeSixtyLookAngle && threeSixtyLookAngle < 202.5f: 
                 //Debug.Log("WEST");
                 selectedSprites = westSprites;
-                animateScript.ChangeAnimationState(playerWalkLeft);
+                animateScript.ChangeAnimationState(animationStrings[2]);
                 break;
 
             //EAST 
             case float _ when 22.5f > threeSixtyLookAngle || threeSixtyLookAngle > 337.5f:
                 //Debug.Log("EAST");
                 selectedSprites = eastSprites;
-                animateScript.ChangeAnimationState(playerWalkRight);
+                animateScript.ChangeAnimationState(animationStrings[3]);
                 break;
 
             //NORTH WEST 
             case float _ when 112.5f < threeSixtyLookAngle && threeSixtyLookAngle < 157.5f:
                 //Debug.Log("NORTH WEST");
                 selectedSprites = northWestSprites;
-                animateScript.ChangeAnimationState(playerWalkUpLeft);
+                animateScript.ChangeAnimationState(animationStrings[4]);
                 break;
 
             //NORTH EAST
             case float _ when 22.5f < threeSixtyLookAngle && threeSixtyLookAngle < 67.5f:
                 //Debug.Log("NORTH EAST");
                 selectedSprites = northEastSprites;
-                animateScript.ChangeAnimationState(playerWalkUpRight);
+                animateScript.ChangeAnimationState(animationStrings[5]);
                 break;
 
             //SOUTH WEST
             case float _ when 202.5f < threeSixtyLookAngle && threeSixtyLookAngle < 247.5f:
                 //Debug.Log("SOUTH WEST");
                 selectedSprites = southWestSprites;
-                animateScript.ChangeAnimationState(playerWalkDownLeft);
+                animateScript.ChangeAnimationState(animationStrings[6]);
                 break;
 
             //SOUTH EAST 
             case float _ when 292.5f < threeSixtyLookAngle && threeSixtyLookAngle < 337.5f:
                 //Debug.Log("SOUTH EAST");
                 selectedSprites = southEastSprites;
-                animateScript.ChangeAnimationState(playerWalkDownRight);
+                animateScript.ChangeAnimationState(animationStrings[7]);
                 break;
 
             default:

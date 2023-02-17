@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 5785742136871053089}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -74,9 +74,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a30466b7aaeba944381410fc679dd518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSrc: {fileID: 0}
-  sfx1: {fileID: 8300000, guid: b0c4e52e5f12f4d4fa27da804939bd76, type: 3}
-  sfx2: {fileID: 8300000, guid: 5cdda5e124afd6e42a3e08c8c694fc1a, type: 3}
 --- !u!58 &6430130542766912848
 CircleCollider2D:
   m_ObjectHideFlags: 0
