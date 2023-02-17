@@ -84,6 +84,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   KnockBackForceMultiplyer: 200
+  EnemyDamage: 1
+  enemyDamageCooldown: 0.5
 --- !u!50 &5557351687921383140
 Rigidbody2D:
   serializedVersion: 4
