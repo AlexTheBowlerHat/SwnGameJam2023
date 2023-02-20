@@ -37,7 +37,7 @@ public class DefaltEnemyMovement : MonoBehaviour
         targetDirection = (targetTransform.position - currentPos).normalized;
         // Moves the enemy at a constant speed
         transform.Translate(targetDirection * speed * Time.deltaTime, Space.World);
-
+    
         if (beingKnockBacked == true){
             transform.GetComponent<Rigidbody2D>().AddForce(-forceApplied * Time.deltaTime / 0.5f);
             timer += Time.deltaTime;
