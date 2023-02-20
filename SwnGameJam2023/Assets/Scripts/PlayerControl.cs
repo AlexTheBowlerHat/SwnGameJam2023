@@ -150,12 +150,14 @@ public class PlayerControl : MonoBehaviour
     //Iterator for constantly firing projectiles on hold, stops when released
     IEnumerator HoldFire(bool stop)
     {
-        if(stop)yield break;
-
-        StartCoroutine(weapon.Shoot(RetreiveMouseInfo(), playerCooldown, playerFireForce, gameObject.tag, firePoint, holdAccessibility));
-        yield return new WaitForSeconds(0.05f);
+        if (!stop)
+        {
+            StartCoroutine(weapon.Shoot(RetreiveMouseInfo(), playerCooldown, playerFireForce, gameObject.tag, firePoint, holdAccessibility));
+            yield return new WaitForSeconds(0.05f);
+            StartCoroutine(HoldFire(stopHoldFire));
+        }
+        else yield break;
         stopHoldFire = false;
-        StartCoroutine(HoldFire(stopHoldFire));
     }
 
     //Flips weapon spot relevant to player depending on where mouse is aiming
