@@ -17,16 +17,20 @@ public class ScoreCounter : MonoBehaviour
         Score = 0;
     }
 
+    public void incrementScore(){
+        Score++;
+        Score_Text = Score.ToString();
+        gameObject.ConvertTo<TMP_Text>().text = Score_Text;
+    }
+
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.F))
         {
-            Score++;
-            
-            Score_Text = Score.ToString();
-            gameObject.ConvertTo<TMP_Text>().text = Score_Text;
+            incrementScore();
         }
+
     }
     
 

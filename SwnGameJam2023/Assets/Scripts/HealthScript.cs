@@ -64,6 +64,8 @@ public class HealthScript : MonoBehaviour
         //Debug.Log("Bye: " + objectTagToString);
         if (objectTagToString == "Enemy")
         {
+            GameObject scoreCounter = GameObject.FindGameObjectsWithTag("Score counter")[0].gameObject;
+            scoreCounter.GetComponent<ScoreCounter>().incrementScore();
             Instantiate(particals, transform.position, transform.rotation = Quaternion.Euler(0, 0, 0));
             Destroy(gameObject);
         }
