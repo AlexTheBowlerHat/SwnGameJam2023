@@ -20,18 +20,19 @@ public class ScoreCounter : MonoBehaviour
     public void incrementScore()
     {
         Score++;
-        Score_Text = Score.ToString();
+        Score_Text = "Score: " + Score.ToString();
         gameObject.ConvertTo<TMP_Text>().text = Score_Text;
     }
 
     // Update is called once per frame
     void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.F))
         {
             incrementScore();
         }
-
+        */
     }
     
 
