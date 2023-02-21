@@ -13,15 +13,7 @@ public class Spawner : MonoBehaviour
     public float minScale;
     public float minHealth;
     public float maxSpeed;
-
-     Quaternion calculateRotationToPlayer(Transform targetTransform){
-        // Calculates the Vector 2 distance between the target and player
-        Vector3 dir = (targetTransform.position) - (transform.position);
-        // Turns this Vector 2 into an angle
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90;
-        // Turns this angle into a rotation value
-        return Quaternion.AngleAxis(angle, Vector3.forward);
-    }
+    public float timeAlive;
 
     public void spawnEnemy(GameObject enemy){
         //Set enemy position
@@ -44,6 +36,7 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        timeAlive += Time.deltaTime;
         timeSinceLastSpawn += Time.deltaTime;
         if (timeSinceLastSpawn > spawnInterval){
             spawnEnemy(enemyPrefab);

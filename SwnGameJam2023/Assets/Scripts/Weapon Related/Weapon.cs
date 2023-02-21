@@ -7,6 +7,8 @@ public class Weapon : MonoBehaviour
     public GameObject projectilePrefab;
     bool hasFired = false;
     [SerializeField] float projectileDamage;
+    public int bulletsPerShot;
+    public float maxSpread;
 
     //Coroutine that fires bullet with a cooldown
     public IEnumerator Shoot(Vector2 lookVector, float cooldown, float projectileForce, string firedTag, Transform firePoint, bool holdAccessibility)
@@ -14,7 +16,8 @@ public class Weapon : MonoBehaviour
         if (!hasFired)
         {
             hasFired = true;
-            Fire(lookVector, firedTag, projectileForce, firePoint);
+            shootShotgun(lookVector, maxSpread, firePoint, firedTag, projectileForce);
+            //Fire(lookVector, firedTag, projectileForce, firePoint);
             yield return new WaitForSeconds(cooldown);
             hasFired = false;
         }
@@ -34,5 +37,16 @@ public class Weapon : MonoBehaviour
         projectile.tag = "NotToBeCollided";
         projectile.GetComponent<ProjectileBehavior>().SetFired(firedTag, projectileDamage);
         projectile.GetComponent<Rigidbody2D>().velocity = projectileDirection;
+    }
+
+    public void shootShotgun(Vector2 lookdirection, float maxSpread, Transform firepoint, string firedTag, float projectileForce){
+        for(int i = 0; i < bulletsPerShot; i++){
+            GameObject newBullet = Instantiate(projectilePrefab, firepoint.position, firepoint.rotation);
+            newBullet.GetComponent<ProjectileBehavior>().SetFired(firedTag, projectileDamage);
+
+            Vector2 lookDirectionOffset = new Vector2(Random.Range(-maxSpread, maxSpread), Random.Range(-maxSpread, maxSpread));
+            Vector2 projectileDirection = (lookdirection + lookDirectionOffset).normalized;
+            newBullet.GetComponent<Rigidbody2D>().velocity = projectileDirection * projectileForce;
+        }
     }
 }

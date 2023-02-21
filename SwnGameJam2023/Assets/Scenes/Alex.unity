@@ -451,6 +451,7 @@ MonoBehaviour:
   minScale: 0.3
   minHealth: 1
   maxSpeed: 7
+  timeAlive: 0
 --- !u!58 &137593439
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -7037,6 +7038,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 5785742136871053089, guid: a1c07fbd87289b54a90419d272576574, type: 3}
   projectileDamage: 1
+  bulletsPerShot: 10
+  maxSpread: 0.5
 --- !u!212 &1870476391
 SpriteRenderer:
   m_ObjectHideFlags: 0
