@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Interactions;
@@ -26,7 +27,10 @@ public class PlayerControl : MonoBehaviour
 
     //Variables for movement
     [Header ("==Movement Variables==")]
-    public float walkSpeed;
+    public float Sprint_Speed;
+    public float Walk_Speed;
+    private float CurrentMovementSpeed = 200;
+    
     [SerializeField] Vector2 direction;
     [Space (5)]
 
@@ -49,6 +53,7 @@ public class PlayerControl : MonoBehaviour
     public Transform handleTransform;
     public bool holdAccessibility = false;
     bool stopHoldFire = false;
+   
     [SerializeField] float playerCooldown;
     [SerializeField] float playerFireForce;
     //IEnumerator coroutineRef;
@@ -88,6 +93,20 @@ public class PlayerControl : MonoBehaviour
         SetSprite();
         //FlipSprite();
         FlipWeapon();
+
+
+    }
+
+    public void Sprint(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            CurrentMovementSpeed = Sprint_Speed;
+        }
+        else if (context.canceled)
+        {
+            CurrentMovementSpeed = Walk_Speed;
+        }
     }
 
     //Movement Methods
@@ -99,7 +118,12 @@ public class PlayerControl : MonoBehaviour
     public void MovePlayer()
     {
         if (direction == Vector2.zero) return;
-        body.velocity = direction * walkSpeed * Time.fixedDeltaTime; //Velocity method
+        body.velocity = direction * CurrentMovementSpeed * Time.fixedDeltaTime; //Velocity method
+
+        if (direction != Vector2.zero)
+        {
+            body.velocity = direction * CurrentMovementSpeed * Time.fixedDeltaTime; //Velocity method
+        }
     }
 
     //Shooting Methods============================================================

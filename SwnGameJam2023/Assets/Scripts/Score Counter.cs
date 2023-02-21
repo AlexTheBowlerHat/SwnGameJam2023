@@ -9,7 +9,7 @@ using UnityEngine.UIElements;
 
 public class ScoreCounter : MonoBehaviour
 {private int Score;
-    private String Score_Text; 
+    private string Score_Text;
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +17,8 @@ public class ScoreCounter : MonoBehaviour
         Score = 0;
     }
 
-    public void incrementScore(){
+    public void incrementScore()
+    {
         Score++;
         Score_Text = Score.ToString();
         gameObject.ConvertTo<TMP_Text>().text = Score_Text;

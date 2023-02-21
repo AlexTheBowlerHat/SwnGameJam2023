@@ -249,7 +249,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 330b981cd0e1f6641b9a7a7a086f27c7, type: 3}
   southWestSprites:
   - {fileID: 21300000, guid: c956d4f5ad7264c4fab6c3fe5e4fcf42, type: 3}
-  walkSpeed: 200
+  Sprint_Speed: 400
+  Walk_Speed: 200
   direction: {x: 0, y: 0}
   lookDirection: {x: 0, y: 0}
   lookAngle: 0
@@ -381,6 +382,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 5ea5d892-6195-496f-9ea0-2d33147f3cbb
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 137593435}
+        m_TargetAssemblyTypeName: PlayerControl, Assembly-CSharp
+        m_MethodName: Sprint
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 70e9f6ac-1815-4557-9f6f-93a1722a1e7a
+    m_ActionName: Player/Sprint[/Keyboard/leftShift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
