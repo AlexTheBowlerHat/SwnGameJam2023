@@ -158,11 +158,11 @@ public class PlayerControl : MonoBehaviour
         //Debug.Log("Fire called, canceled is: " + context.canceled + " , interatction is: " + context.interaction);
         if (context.performed && context.interaction is TapInteraction)
         {
-            StartCoroutine(weapon.Shoot(RetreiveMouseInfo(), playerCooldown, playerFireForce, gameObject.tag, firePoint, holdAccessibility));
+            StartCoroutine(weapon.ShootPattern(RetreiveMouseInfo(), playerCooldown, playerFireForce, gameObject.tag, firePoint, holdAccessibility));
         }
         else if (context.performed && context.interaction is HoldInteraction)
         {
-            StartCoroutine(HoldFire(stopHoldFire));
+            StartCoroutine(HoldFire(stopHoldFire)); 
         }
         else if (context.canceled && context.interaction is HoldInteraction)
         {
@@ -176,8 +176,8 @@ public class PlayerControl : MonoBehaviour
     {
         if (!stop)
         {
-            StartCoroutine(weapon.Shoot(RetreiveMouseInfo(), playerCooldown, playerFireForce, gameObject.tag, firePoint, holdAccessibility));
-            yield return new WaitForSeconds(0.05f);
+            StartCoroutine(weapon.ShootPattern(RetreiveMouseInfo(), playerCooldown, playerFireForce, gameObject.tag, firePoint, holdAccessibility));
+            yield return new WaitForSeconds(playerCooldown);
             StartCoroutine(HoldFire(stopHoldFire));
         }
         else yield break;

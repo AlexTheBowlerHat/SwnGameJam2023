@@ -9,23 +9,53 @@ public class Weapon : MonoBehaviour
     [SerializeField] float projectileDamage;
     public int bulletsPerShot;
     public float maxSpread;
+    [Space (5)]
+    public bool shotgunBonus = false;
+    public int shotgunTime;
+    float shotgunTimer;
+    bool shotTimerStarted = false;
 
     //Coroutine that fires bullet with a cooldown
-    public IEnumerator Shoot(Vector2 lookVector, float cooldown, float projectileForce, string firedTag, Transform firePoint, bool holdAccessibility)
+    public IEnumerator ShootPattern(Vector2 lookVector, float cooldown, float projectileForce, string firedTag, Transform firePoint, bool holdAccessibility)
     {
-        if (!hasFired)
+        if (hasFired){yield break;}
+        hasFired = true;
+        if (!shotgunBonus)
         {
-            hasFired = true;
-            shootShotgun(lookVector, maxSpread, firePoint, firedTag, projectileForce);
-            //Fire(lookVector, firedTag, projectileForce, firePoint);
-            yield return new WaitForSeconds(cooldown);
-            hasFired = false;
+            DefaultFire(lookVector, firedTag, projectileForce, firePoint);
         }
+        else if(shotgunBonus)
+        {
+            Debug.Log("STEP B: got to shottie");
+            shootShotgun(lookVector, maxSpread, firePoint, firedTag, projectileForce);
+            if (!shotTimerStarted)
+            {
+                Debug.Log("STEP B1: got to timer start");
+                shotTimerStarted = true;
+                StartCoroutine(ShotgunTimer(shotgunTime)); 
+            }
+        }
+        yield return new WaitForSeconds(cooldown);
+        hasFired = false;
+        Debug.Log("STEP C:" + shotgunBonus.ToString() + " after cool down");
+        yield break;
+    }
+    IEnumerator ShotgunTimer(float shotgunTime)
+    {
+        Debug.Log("STEP B2: SHOTTIE TIMER CO");
+        while (shotgunTimer > 0)
+        {
+            Debug.Log(shotgunTimer);
+            shotgunTimer = shotgunTimer - Time.deltaTime;
+        }
+        Debug.Log("STEP B3: PAST TIMER");
+        shotTimerStarted = false;
+        shotgunBonus = false;
         yield break;
     }
    
    //Creates a projectile and fires it from the weapon, also passes the tag of object that fired it
-    public void Fire(Vector2 lookVector, string firedTag, float projectileForce, Transform firePoint)
+    public void DefaultFire(Vector2 lookVector, string firedTag, float projectileForce, Transform firePoint)
     {
         Vector2 projectileDirection = (projectileForce * lookVector);
         /*

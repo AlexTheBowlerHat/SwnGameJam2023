@@ -743,6 +743,7 @@ MonoBehaviour:
   healthPoints: 0
   healthUI: {fileID: 137593445}
   invincible: 0
+  iframes: 0.5
 --- !u!114 &137593445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7114,7 +7115,6 @@ GameObject:
   - component: {fileID: 1579183974}
   - component: {fileID: 1579183973}
   - component: {fileID: 1579183972}
-  - component: {fileID: 1579183971}
   m_Layer: 5
   m_Name: Score Counter
   m_TagString: Score counter
@@ -7142,18 +7142,6 @@ RectTransform:
   m_AnchoredPosition: {x: 25, y: -200}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0, y: 0.5}
---- !u!114 &1579183971
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1579183969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57d9821ff17a55e41bb50dafd0a8abbe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1579183972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7618,6 +7606,8 @@ MonoBehaviour:
   projectileDamage: 1
   bulletsPerShot: 10
   maxSpread: 0.5
+  shotgunBonus: 0
+  shotgunTime: 10
 --- !u!212 &1870476391
 SpriteRenderer:
   m_ObjectHideFlags: 0

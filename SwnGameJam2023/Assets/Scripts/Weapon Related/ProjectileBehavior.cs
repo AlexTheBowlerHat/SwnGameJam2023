@@ -27,7 +27,7 @@ public class ProjectileBehavior : MonoBehaviour
         HealthScript collidedHealthClass = collision.GetComponent<HealthScript>();
         if (collidedHealthClass == null || collidedHealthClass.invincible == true) return;
         audioReference.PlaySFX();
-        collidedHealthClass.UpdateHealth(projectileDamage);
+        StartCoroutine(collidedHealthClass.UpdateHealth(projectileDamage)); 
     }
 
     //Cleans up projectile once it hits an object, checks it isn't hitting its owner

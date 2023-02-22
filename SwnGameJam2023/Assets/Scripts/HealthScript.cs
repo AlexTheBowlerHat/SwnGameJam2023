@@ -14,15 +14,24 @@ public class HealthScript : MonoBehaviour
     [SerializeField] private HealthUI healthUI;
     private string objectTagToString;
     public bool invincible = false;
+    public float iframes = 0.5f;
     Animate animateScript;
     //Called whenever a health change is needed
-    public void UpdateHealth(float change)
+    IEnumerator iframeWaiter(float iframes)
     {
+        yield return new WaitForSeconds(iframes);
+    }
+    public IEnumerator UpdateHealth(float change)
+    {
+        if (invincible)yield break;
         //Changes health
         healthPoints -= change;
         //Debug.Log("Damage done to: " + gameObject.ToString());
         healthPoints = Mathf.Clamp(healthPoints, 0f, maxHealth); //Makes sure health is in the correct range
-
+        if (healthPoints <= 0f)
+        {
+            Eliminate();
+        }
         //Debug.Log("got here updating health");
         //if (animateScript == null) return;
         //Debug.Log("made it past null check");
@@ -30,9 +39,13 @@ public class HealthScript : MonoBehaviour
         //Animations
         if (objectTagToString == "Player")
         {
+            invincible = true;
             //Debug.Log("Player calling");
             animateScript.DamageAnimation("playerBlink");
             healthUI.UpdateHearts(healthPoints);
+            StartCoroutine(iframeWaiter(iframes));
+            
+            invincible = false;
         }
         /*
         else if (objectTagToString == "Enemy")
@@ -41,11 +54,8 @@ public class HealthScript : MonoBehaviour
         }
         */
         //Death check
-        if (healthPoints <= 0f)
-        {
-            Eliminate();
-        }
-
+        
+        yield break;
     }
 
     // Start is called before the first frame update
