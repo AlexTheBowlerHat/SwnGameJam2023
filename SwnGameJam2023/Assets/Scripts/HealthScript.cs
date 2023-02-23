@@ -15,6 +15,7 @@ public class HealthScript : MonoBehaviour
     private string objectTagToString;
     public bool invincible = false;
     public float iframes = 0.5f;
+    private bool Enemy_Eliminated = false;
     Animate animateScript;
     //Called whenever a health change is needed
     IEnumerator iframeWaiter(float iframes)
@@ -28,9 +29,10 @@ public class HealthScript : MonoBehaviour
         healthPoints -= change;
         //Debug.Log("Damage done to: " + gameObject.ToString());
         healthPoints = Mathf.Clamp(healthPoints, 0f, maxHealth); //Makes sure health is in the correct range
-        if (healthPoints <= 0f)
+        if (healthPoints <= 0f && Enemy_Eliminated == false)
         {
             Eliminate();
+            Enemy_Eliminated = true;
         }
         //Debug.Log("got here updating health");
         //if (animateScript == null) return;
