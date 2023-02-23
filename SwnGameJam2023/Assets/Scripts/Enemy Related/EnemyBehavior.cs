@@ -11,7 +11,6 @@ public class EnemyBehavior : MonoBehaviour
     IEnumerator CoolDown()
     {
         yield return new WaitForSeconds(enemyDamageCooldown);
-        Debug.Log("past cooldown on enemy");
     }
 
     //When collided, causes knockback and damage, puts enemy on cooldown

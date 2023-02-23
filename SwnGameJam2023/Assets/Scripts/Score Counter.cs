@@ -48,7 +48,6 @@ public class ScoreCounter : MonoBehaviour
             Weapon playerWeapon = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Weapon>();
             if (!playerWeapon) return;
             playerWeapon.shotgunBonus = true;
-            Debug.Log("STEP A: weaponie" + playerWeapon.shotgunBonus.ToString());
         }
     }
 }

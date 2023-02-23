@@ -25,29 +25,23 @@ public class Weapon : MonoBehaviour
         }
         else if(shotgunBonus)
         {
-            Debug.Log("STEP B: got to shottie");
             shootShotgun(lookVector, maxSpread, firePoint, firedTag, projectileForce);
             if (!shotTimerStarted)
             {
-                Debug.Log("STEP B1: got to timer start");
                 shotTimerStarted = true;
                 StartCoroutine(ShotgunTimer(shotgunTime)); 
             }
         }
         yield return new WaitForSeconds(cooldown);
         hasFired = false;
-        Debug.Log("STEP C:" + shotgunBonus.ToString() + " after cool down");
         yield break;
     }
     IEnumerator ShotgunTimer(float shotgunTime)
     {
-        Debug.Log("STEP B2: SHOTTIE TIMER CO");
         while (shotgunTime > 0)
         {
-            Debug.Log(shotgunTime);
             shotgunTime = shotgunTime - Time.deltaTime;
         }
-        Debug.Log("STEP B3: PAST TIMER");
         shotTimerStarted = false;
         shotgunBonus = false;
         yield break;

@@ -44,7 +44,6 @@ public class HealthScript : MonoBehaviour
             invincible = true;
             //Debug.Log("Player calling");
             animateScript.DamageAnimation("playerBlink");
-            Debug.Log("player blink call");
             healthUI.UpdateHearts(healthPoints);
             StartCoroutine(iframeWaiter(iframes));
             
