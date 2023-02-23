@@ -11,10 +11,32 @@ public class Weapon : MonoBehaviour
     public float maxSpread;
     [Space (5)]
     public bool shotgunBonus = false;
+    private float currentshotgunTime;
     public float shotgunTime;
     bool shotTimerStarted = false;
 
     //Coroutine that fires bullet with a cooldown
+
+    private void Start()
+    {
+        currentshotgunTime = shotgunTime;
+    }
+
+    void Update()
+    {
+        if (currentshotgunTime > 0 && shotTimerStarted == true)
+            {
+                currentshotgunTime = currentshotgunTime - Time.deltaTime;
+                Debug.Log(currentshotgunTime);
+            }
+        if (currentshotgunTime <= 0)
+           {
+               shotTimerStarted = false;
+               shotgunBonus = false;
+               currentshotgunTime = shotgunTime;           
+           }
+    }
+
     public IEnumerator ShootPattern(Vector2 lookVector, float cooldown, float projectileForce, string firedTag, Transform firePoint, bool holdAccessibility)
     {
         if (hasFired){yield break;}
@@ -28,25 +50,14 @@ public class Weapon : MonoBehaviour
             shootShotgun(lookVector, maxSpread, firePoint, firedTag, projectileForce);
             if (!shotTimerStarted)
             {
-                shotTimerStarted = true;
-                StartCoroutine(ShotgunTimer(shotgunTime)); 
+                shotTimerStarted = true;               
             }
         }
         yield return new WaitForSeconds(cooldown);
         hasFired = false;
         yield break;
     }
-    IEnumerator ShotgunTimer(float shotgunTime)
-    {
-        while (shotgunTime > 0)
-        {
-            shotgunTime = shotgunTime - Time.deltaTime;
-        }
-        shotTimerStarted = false;
-        shotgunBonus = false;
-        yield break;
-    }
-   
+    
    //Creates a projectile and fires it from the weapon, also passes the tag of object that fired it
     public void DefaultFire(Vector2 lookVector, string firedTag, float projectileForce, Transform firePoint)
     {

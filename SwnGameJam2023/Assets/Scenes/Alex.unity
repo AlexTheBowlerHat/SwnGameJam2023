@@ -7607,7 +7607,7 @@ MonoBehaviour:
   bulletsPerShot: 10
   maxSpread: 0.5
   shotgunBonus: 0
-  shotgunTime: 10
+  shotgunTime: 3
 --- !u!212 &1870476391
 SpriteRenderer:
   m_ObjectHideFlags: 0
