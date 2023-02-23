@@ -27,7 +27,7 @@ public class ScoreCounter : MonoBehaviour
         gameObject.ConvertTo<TMP_Text>().text = Score_Text;
         //Mod operator returns remainder
         //Checks if point amount eligible for bonus, if so grant it
-        //if (Score % 5 != 0 ) return;
+        if (Score % 5 != 0 ) return;
         BonusGiver();
     }
     void BonusGiver()
