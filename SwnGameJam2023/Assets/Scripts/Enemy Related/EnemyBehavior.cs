@@ -23,7 +23,7 @@ public class EnemyBehavior : MonoBehaviour
 
         if (dealtDamage) return;
         dealtDamage = true;
-        StartCoroutine(collidedHealthClass.UpdateHealth(EnemyDamage));
+        collidedHealthClass.UpdateHealth(EnemyDamage);
         CoolDown();
 
         dealtDamage = false;

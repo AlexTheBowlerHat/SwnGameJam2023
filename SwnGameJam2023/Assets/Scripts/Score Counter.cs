@@ -39,7 +39,7 @@ public class ScoreCounter : MonoBehaviour
             //Debug.Log("healthie");
             HealthScript playerHealthscript = GameObject.FindGameObjectWithTag("Player").GetComponent<HealthScript>();
             if (!playerHealthscript) return;
-            StartCoroutine(playerHealthscript.UpdateHealth(-1f));
+            playerHealthscript.UpdateHealth(-1f);
             
         }
         else if (Randomnum == 2)

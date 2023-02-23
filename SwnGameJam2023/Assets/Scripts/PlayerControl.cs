@@ -180,8 +180,10 @@ public class PlayerControl : MonoBehaviour
             yield return new WaitForSeconds(playerCooldown);
             StartCoroutine(HoldFire(stopHoldFire));
         }
-        else yield break;
+        else
         stopHoldFire = false;
+        yield break;
+        
     }
 
     //Flips weapon spot relevant to player depending on where mouse is aiming

@@ -11,8 +11,7 @@ public class Weapon : MonoBehaviour
     public float maxSpread;
     [Space (5)]
     public bool shotgunBonus = false;
-    public int shotgunTime;
-    float shotgunTimer;
+    public float shotgunTime;
     bool shotTimerStarted = false;
 
     //Coroutine that fires bullet with a cooldown
@@ -43,10 +42,10 @@ public class Weapon : MonoBehaviour
     IEnumerator ShotgunTimer(float shotgunTime)
     {
         Debug.Log("STEP B2: SHOTTIE TIMER CO");
-        while (shotgunTimer > 0)
+        while (shotgunTime > 0)
         {
-            Debug.Log(shotgunTimer);
-            shotgunTimer = shotgunTimer - Time.deltaTime;
+            Debug.Log(shotgunTime);
+            shotgunTime = shotgunTime - Time.deltaTime;
         }
         Debug.Log("STEP B3: PAST TIMER");
         shotTimerStarted = false;

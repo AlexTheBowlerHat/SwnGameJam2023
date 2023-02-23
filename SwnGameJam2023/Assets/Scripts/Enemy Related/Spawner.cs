@@ -25,12 +25,17 @@ public class Spawner : MonoBehaviour
         Quaternion rotation = transform.rotation;
         GameObject NewEnemy = Instantiate(enemy, position, rotation, enemyHolder.transform);
 
+
         //Set enemy size
         float size = Random.Range(1, maxSize);
         NewEnemy.transform.localScale = new Vector3(minScale * size, minScale * size, 1);
         NewEnemy.GetComponent<HealthScript>().healthPoints = minHealth * size;
         NewEnemy.GetComponent<DefaltEnemyMovement>().speed = maxSpeed/size;
         NewEnemy.GetComponent<DefaltEnemyMovement>().maxSpeed = maxSpeed/size;
+        Color enemyColour = NewEnemy.GetComponentInChildren<SpriteRenderer>().color;
+        Debug.Log(enemyColour.ToString());
+        enemyColour = new Color(r: (Random.Range(0f, 256f)) / 255, g: (Random.Range(0f, 256f)) / 255, b: (Random.Range(0f, 256f))/255, enemyColour.a);
+        //Debug.Log(enemyColour);
 
     }
     // Update is called once per frame

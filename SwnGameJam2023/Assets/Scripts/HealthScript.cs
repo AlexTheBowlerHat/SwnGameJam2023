@@ -22,9 +22,9 @@ public class HealthScript : MonoBehaviour
     {
         yield return new WaitForSeconds(iframes);
     }
-    public IEnumerator UpdateHealth(float change)
+    public void UpdateHealth(float change)
     {
-        if (invincible)yield break;
+        if (invincible)return;  
         //Changes health
         healthPoints -= change;
         //Debug.Log("Damage done to: " + gameObject.ToString());
@@ -44,6 +44,7 @@ public class HealthScript : MonoBehaviour
             invincible = true;
             //Debug.Log("Player calling");
             animateScript.DamageAnimation("playerBlink");
+            Debug.Log("player blink call");
             healthUI.UpdateHearts(healthPoints);
             StartCoroutine(iframeWaiter(iframes));
             
@@ -57,7 +58,7 @@ public class HealthScript : MonoBehaviour
         */
         //Death check
         
-        yield break;
+
     }
 
     // Start is called before the first frame update

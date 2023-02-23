@@ -520,7 +520,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHolder: {fileID: 230707288}
-  spawnInterval: 1
+  spawnInterval: 5
   distanceFromSpawner: 9
   enemyPrefab: {fileID: 2470468191512384719, guid: 3900f61fbe486e444b3fe0f47726068d, type: 3}
   timeSinceLastSpawn: 0
@@ -743,7 +743,7 @@ MonoBehaviour:
   healthPoints: 0
   healthUI: {fileID: 137593445}
   invincible: 0
-  iframes: 0.5
+  iframes: 1
 --- !u!114 &137593445
 MonoBehaviour:
   m_ObjectHideFlags: 0

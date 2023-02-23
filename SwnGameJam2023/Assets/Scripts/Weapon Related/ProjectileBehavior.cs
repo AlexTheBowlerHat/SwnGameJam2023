@@ -23,11 +23,11 @@ public class ProjectileBehavior : MonoBehaviour
     private void ProjectileCleanup(Collider2D collision)
     {
         Destroy(gameObject);
-        if (collision.tag != "Player" && collision.tag != "Enemy") return;
+        if (collision.tag != "Enemy") return;
         HealthScript collidedHealthClass = collision.GetComponent<HealthScript>();
         if (collidedHealthClass == null || collidedHealthClass.invincible == true) return;
         audioReference.PlaySFX();
-        StartCoroutine(collidedHealthClass.UpdateHealth(projectileDamage)); 
+        collidedHealthClass.UpdateHealth(projectileDamage);
     }
 
     //Cleans up projectile once it hits an object, checks it isn't hitting its owner
