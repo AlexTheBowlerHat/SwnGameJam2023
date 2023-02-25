@@ -27,7 +27,6 @@ public class Weapon : MonoBehaviour
         if (currentshotgunTime > 0 && shotTimerStarted == true)
             {
                 currentshotgunTime = currentshotgunTime - Time.deltaTime;
-                Debug.Log(currentshotgunTime);
             }
         if (currentshotgunTime <= 0)
            {

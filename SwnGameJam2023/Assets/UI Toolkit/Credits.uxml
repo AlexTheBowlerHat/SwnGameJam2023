@@ -3,9 +3,7 @@
     <ui:VisualElement name="Background" style="flex-grow: 1; background-color: rgba(255, 0, 0, 0); background-image: none; flex-direction: row; flex-wrap: nowrap; justify-content: space-between;">
         <ui:VisualElement name="Left" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
         <ui:VisualElement name="Middle" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
-        <ui:VisualElement name="Right" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0);" />
-        <ui:Button text="Start" display-tooltip-when-elided="true" name="startButton" />
+        <ui:Button text="Back to start menu" display-tooltip-when-elided="true" name="backToMainMenuButton" />
         <ui:Button text="Quit" display-tooltip-when-elided="true" name="quitButton" />
-        <ui:Button text="Credits" display-tooltip-when-elided="true" name="creditsButton" />
     </ui:VisualElement>
 </ui:UXML>
