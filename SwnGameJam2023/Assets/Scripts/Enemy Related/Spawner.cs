@@ -34,7 +34,7 @@ public class Spawner : MonoBehaviour
         NewEnemy.GetComponent<DefaltEnemyMovement>().speed = maxSpeed/size;
         NewEnemy.GetComponent<DefaltEnemyMovement>().maxSpeed = maxSpeed/size;
         Color enemyColour = NewEnemy.GetComponentInChildren<SpriteRenderer>().color;
-        enemyColour = new Color(r: (Random.Range(0f, 256f)) / 255, g: (Random.Range(0f, 256f)) / 255, b: (Random.Range(0f, 256f))/255, enemyColour.a);
+        enemyColour = new Color(r: Random.Range(0f,1f),g: Random.Range(0f,1f), b: Random.Range(0f,1f), a:1f);
         //Debug.Log(enemyColour);
 
     }

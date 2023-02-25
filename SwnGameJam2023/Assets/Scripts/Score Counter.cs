@@ -13,6 +13,7 @@ public class ScoreCounter : MonoBehaviour
     private int Score;
     int Randomnum;
     private string Score_Text;
+    public SFXControl audioReference;
 
     // Start is called before the first frame update
     void Start()
@@ -45,9 +46,11 @@ public class ScoreCounter : MonoBehaviour
         else if (Randomnum == 2)
         {
             //Debug.Log("shottie");
+            audioReference.PlaySFX();
             Weapon playerWeapon = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Weapon>();
             if (!playerWeapon) return;
             playerWeapon.shotgunBonus = true;
+            
         }
     }
 }

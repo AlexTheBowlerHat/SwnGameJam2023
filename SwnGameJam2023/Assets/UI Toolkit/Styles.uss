@@ -175,3 +175,50 @@
     width: 70%;
     height: 45px;
 }
+
+.BUTTONJAMDEFAULT {
+    -unity-font: url('project://database/Assets/UI%20Toolkit/SuperLegendBoy-4w8Y.ttf?fileID=12800000&guid=e1f22ff7f0110f64a8c4e01687e176d6&type=3#SuperLegendBoy-4w8Y');
+    -unity-font-definition: url('project://database/Assets/UI%20Toolkit/SuperLegendBoy-4w8Y%20SDF.asset?fileID=11400000&guid=1a9b37e346629bc47952f8e0234503ff&type=2#SuperLegendBoy-4w8Y SDF');
+    margin-top: 5%;
+    flex-shrink: 0;
+    flex-basis: auto;
+    width: 80%;
+    height: 10%;
+    background-color: rgb(108, 92, 231);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+}
+
+.BUTTONJAMDEFAULT:hover {
+    -unity-font: url('project://database/Assets/UI%20Toolkit/SuperLegendBoy-4w8Y.ttf?fileID=12800000&guid=e1f22ff7f0110f64a8c4e01687e176d6&type=3#SuperLegendBoy-4w8Y');
+    -unity-font-definition: url('project://database/Assets/UI%20Toolkit/SuperLegendBoy-4w8Y%20SDF.asset?fileID=11400000&guid=1a9b37e346629bc47952f8e0234503ff&type=2#SuperLegendBoy-4w8Y SDF');
+    margin-top: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
+    width: 80%;
+    height: 10%;
+    background-color: rgb(108, 92, 231);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    color: rgb(255, 255, 255);
+}
+
+.BUTTONJAMDEFAULT:active {
+    -unity-font: url('project://database/Assets/UI%20Toolkit/SuperLegendBoy-4w8Y.ttf?fileID=12800000&guid=e1f22ff7f0110f64a8c4e01687e176d6&type=3#SuperLegendBoy-4w8Y');
+    -unity-font-definition: url('project://database/Assets/UI%20Toolkit/SuperLegendBoy-4w8Y%20SDF.asset?fileID=11400000&guid=1a9b37e346629bc47952f8e0234503ff&type=2#SuperLegendBoy-4w8Y SDF');
+    margin-top: 0;
+    flex-shrink: 0;
+    flex-basis: auto;
+    width: 80%;
+    height: 10%;
+    background-color: rgb(41, 24, 173);
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    color: rgb(255, 255, 255);
+}

@@ -14,6 +14,7 @@ public class Weapon : MonoBehaviour
     private float currentshotgunTime;
     public float shotgunTime;
     bool shotTimerStarted = false;
+    public GameObject playerObject;
 
     //Coroutine that fires bullet with a cooldown
 
@@ -27,6 +28,7 @@ public class Weapon : MonoBehaviour
         if (currentshotgunTime > 0 && shotTimerStarted == true)
             {
                 currentshotgunTime = currentshotgunTime - Time.deltaTime;
+                playerObject.GetComponent<SpriteRenderer>().color = new Color(r: Random.Range(0f,1f),g: Random.Range(0f,1f), b: Random.Range(0f,1f), a:1f);
             }
         if (currentshotgunTime <= 0)
            {
