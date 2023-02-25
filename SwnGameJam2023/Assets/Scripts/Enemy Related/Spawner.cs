@@ -14,6 +14,7 @@ public class Spawner : MonoBehaviour
     public float minHealth;
     public float maxSpeed;
     public float timeAlive;
+    public float speedDecreasePerSecond;
 
     public void spawnEnemy(GameObject enemy){
         //Set enemy position
@@ -41,6 +42,7 @@ public class Spawner : MonoBehaviour
     void Update()
     {
         timeAlive += Time.deltaTime;
+        spawnInterval -= Time.deltaTime*speedDecreasePerSecond;
         timeSinceLastSpawn += Time.deltaTime;
         if (timeSinceLastSpawn > spawnInterval){
             spawnEnemy(enemyPrefab);

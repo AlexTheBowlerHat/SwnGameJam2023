@@ -529,6 +529,7 @@ MonoBehaviour:
   minHealth: 1
   maxSpeed: 7
   timeAlive: 0
+  speedDecreasePerSecond: 0.01
 --- !u!58 &137593439
 CircleCollider2D:
   m_ObjectHideFlags: 0
